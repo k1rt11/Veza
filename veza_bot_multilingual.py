@@ -1,5 +1,5 @@
 """
-Veza — Multilingual WhatsApp reporting bot (Twilio + Flask)
+Veza - Multilingual WhatsApp reporting bot (Twilio + Flask)
 ===========================================================
 English / isiZulu / Sesotho. The user picks a language and the whole flow
 responds in that language.
@@ -47,38 +47,44 @@ def save_report(s):
 
 
 # =====================  MESSAGE SETS  ========================================
-# T[lang][key]. lang in {en, zu, st}
+# T[lang][key]. lang in {en, zu, st}. Welcome is always shown first (trilingual
+# is impractical inline, so the welcome itself is English + language menu).
 
 WELCOME = (
-    "👋 You're not alone, and this is not your fault. / Awuwedwa / Ha o mong.\n\n"
+    "👋 Welcome to *Veza*.\n\n"
+    "If you've been targeted by an AI scam - a fake voice, video, or message - "
+    "you're not alone, and it is *not your fault*. Scammers are skilled, and it "
+    "happens to many people.\n\n"
+    "Reporting here is *anonymous* - we never store your phone number. It takes "
+    "about 2 minutes, and it helps protect others in your community.\n\n"
     "Reply with a number to choose your language:\n"
-    "1 — English\n2 — isiZulu\n3 — Sesotho"
+    "1 - English\n2 - isiZulu\n3 - Sesotho"
 )
 
 T = {
     "en": {
         "screen": ("Did this involve a *fake voice, image, video, or automated "
-                   "messages that did not seem human*?\n\n1 — Yes\n2 — No / Not sure"),
+                   "messages that did not seem human*?\n\n1 - Yes\n2 - No / Not sure"),
         "not_ai": ("Thank you. Veza focuses on AI-related scams (like deepfakes or "
-                   "voice clones), so this may be outside what we collect — but you can "
+                   "voice clones), so this may be outside what we collect - but you can "
                    "still get help.\n\nTo report any scam or get advice, call the free "
                    "Yima hotline: *083 123 7226*.\n\nStay safe. 💛"),
         "q1": ("What kind of scam was it? Reply with a number:\n"
-               "1 — Impersonation (someone pretended to be a person or company)\n"
-               "2 — Deepfake (fake video or photo of a real person)\n"
-               "3 — Fake investment or \"get rich\" offer\n"
-               "4 — Fake job or work offer\n5 — False information / fake news\n"
-               "6 — Something else"),
-        "q2": ("Where did it happen? Reply with a number:\n1 — WhatsApp\n2 — Phone call\n"
-               "3 — Facebook\n4 — Email or SMS\n5 — Somewhere else"),
-        "q3": ("What did it affect? Reply with a number:\n1 — I lost money\n"
-               "2 — I gave away personal information\n3 — It upset me but I lost nothing\n"
-               "4 — Nothing happened, I caught it in time"),
-        "q4": ("Did you report this anywhere else?\n1 — Yes\n2 — No, I felt ashamed\n"
-               "3 — No, I didn't know where to report\n4 — No, I didn't think it would help"),
+               "1 - Impersonation (someone pretended to be a person or company)\n"
+               "2 - Deepfake (fake video or photo of a real person)\n"
+               "3 - Fake investment or \"get rich\" offer\n"
+               "4 - Fake job or work offer\n5 - False information / fake news\n"
+               "6 - Something else"),
+        "q2": ("Where did it happen? Reply with a number:\n1 - WhatsApp\n2 - Phone call\n"
+               "3 - Facebook\n4 - Email or SMS\n5 - Somewhere else"),
+        "q3": ("What did it affect? Reply with a number:\n1 - I lost money\n"
+               "2 - I gave away personal information\n3 - It upset me but I lost nothing\n"
+               "4 - Nothing happened, I caught it in time"),
+        "q4": ("Did you report this anywhere else?\n1 - Yes\n2 - No, I felt ashamed\n"
+               "3 - No, I didn't know where to report\n4 - No, I didn't think it would help"),
         "q5": ("Last step (optional). Send a screenshot or voice note, OR type what "
                "happened in your own words, OR reply SKIP to finish.\nThis part helps "
-               "most — tell us what happened."),
+               "most - tell us what happened."),
         "next_core": ("✅ Thank you. Your report is recorded and helps protect your "
                       "community.\n\n*What to do now:*\n• Call the free Yima hotline: "
                       "*083 123 7226*.\n• If you lost money or shared banking details, call "
@@ -92,7 +98,7 @@ T = {
                               "official number."),
             "deepfake": ("*Spot it next time:* A video or voice can be faked. If a known "
                          "person asks for money or promotes an investment, treat it as fake "
-                         "until proven real — call them on a trusted number."),
+                         "until proven real - call them on a trusted number."),
             "investment": ("*Spot it next time:* No real investment \"guarantees\" 30% "
                            "returns. Guaranteed profit + pressure to deposit fast = scam. "
                            "Check the company is FSCA-registered first."),
@@ -103,36 +109,36 @@ T = {
                           "forwarding something shocking, check a trusted news source reports "
                           "the same thing."),
             "other": ("*Spot it next time:* If a message creates urgency, asks for money or "
-                      "details, or seems too good to be true — pause and verify through an "
+                      "details, or seems too good to be true - pause and verify through an "
                       "official channel first."),
         },
         "digest": ("Want a free weekly WhatsApp message on the latest scams and how to spot "
-                   "them?\n\n1 — Yes\n2 — No thanks"),
+                   "them?\n\n1 - Yes\n2 - No thanks"),
         "done_yes": "Done! Stay safe. 💛 (Reply STOP anytime to unsubscribe.)",
         "done_no": "No problem. Stay safe. 💛 Your number is not stored.",
     },
 
     "zu": {
         "screen": ("Ingabe lokhu kwakuhilela izwi, isithombe, ividiyo, noma imiyalezo "
-                   "ezenzakalelayo engabonakali njengomuntu?\n\n1 — Yebo\n2 — Cha / Angiqiniseki"),
+                   "ezenzakalelayo engabonakali njengomuntu?\n\n1 - Yebo\n2 - Cha / Angiqiniseki"),
         "not_ai": ("Ngiyabonga. I-Veza igxile ekukhwabaniseni okuhlobene ne-AI (njenge-"
                    "deepfakes noma ama-clone ezwi), ngakho lokhu kungase kube ngaphandle "
-                   "kwalokho esikuqoqayo — kodwa usengathola usizo.\n\nUkubika noma yikuphi "
+                   "kwalokho esikuqoqayo - kodwa usengathola usizo.\n\nUkubika noma yikuphi "
                    "ukukhwabanisa, shayela ucingo lwamahhala lwe-Yima: *083 123 7226*.\n\n"
                    "Hlala uphephile. 💛"),
         "q1": ("Hlobo luni lokukhwabanisa? Phendula ngenombolo:\n"
-               "1 — Ukuzenza ongeyena (othile uzenze umuntu noma inkampani)\n"
-               "2 — Deepfake (ividiyo noma isithombe somuntu wangempela)\n"
-               "3 — Ukutshalwa kwezimali okungamanga noma isiphakamiso \"sokuceba\"\n"
-               "4 — Umsebenzi noma isiphakamiso somsebenzi esingamanga\n"
-               "5 — Ulwazi olungamanga / izindaba ezingamanga\n6 — Okunye"),
-        "q2": ("Kwenzeke kuphi? Phendula ngenombolo:\n1 — WhatsApp\n2 — Ucingo\n3 — Facebook\n"
-               "4 — I-imeyili noma i-SMS\n5 — Kwenye indawo"),
-        "q3": ("Kuthinte ini? Phendula ngenombolo:\n1 — Ngilahlekelwe yimali\n"
-               "2 — Ngikhiphe ulwazi lomuntu siqu\n3 — Kwangicasula kodwa angilahlekelwanga lutho\n"
-               "4 — Akukho okwenzekile, ngikubambe ngesikhathi"),
-        "q4": ("Ingabe ukubike lokhu kwenye indawo?\n1 — Yebo\n2 — Cha, ngazizwa nginamahloni\n"
-               "3 — Cha, ngangingazi ukuthi ngizobika kuphi\n4 — Cha, ngangingacabangi ukuthi "
+               "1 - Ukuzenza ongeyena (othile uzenze umuntu noma inkampani)\n"
+               "2 - Deepfake (ividiyo noma isithombe somuntu wangempela)\n"
+               "3 - Ukutshalwa kwezimali okungamanga noma isiphakamiso \"sokuceba\"\n"
+               "4 - Umsebenzi noma isiphakamiso somsebenzi esingamanga\n"
+               "5 - Ulwazi olungamanga / izindaba ezingamanga\n6 - Okunye"),
+        "q2": ("Kwenzeke kuphi? Phendula ngenombolo:\n1 - WhatsApp\n2 - Ucingo\n3 - Facebook\n"
+               "4 - I-imeyili noma i-SMS\n5 - Kwenye indawo"),
+        "q3": ("Kuthinte ini? Phendula ngenombolo:\n1 - Ngilahlekelwe yimali\n"
+               "2 - Ngikhiphe ulwazi lomuntu siqu\n3 - Kwangicasula kodwa angilahlekelwanga lutho\n"
+               "4 - Akukho okwenzekile, ngikubambe ngesikhathi"),
+        "q4": ("Ingabe ukubike lokhu kwenye indawo?\n1 - Yebo\n2 - Cha, ngazizwa nginamahloni\n"
+               "3 - Cha, ngangingazi ukuthi ngizobika kuphi\n4 - Cha, ngangingacabangi ukuthi "
                "kuzosiza"),
         "q5": ("Isinyathelo sokugcina (ongakukhetha). Thumela isithombe-skrini noma inothi "
                "yezwi, NOMA uthayiphe okwenzekile ngamazwi akho, NOMA uphendule u-SKIP ukuze "
@@ -164,11 +170,11 @@ T = {
                           "yi-AI kusakazeka ngokushesha. Ngaphambi kokuthumela into eshaqisayo, "
                           "hlola ukuthi umthombo wezindaba othembekile ubika into efanayo."),
             "other": ("*Yibone ngokuzayo:* Uma umlayezo udala ukuphuthuma, ucela imali noma "
-                      "imininingwane, noma ubonakala umuhle kakhulu — misa isikhashana "
+                      "imininingwane, noma ubonakala umuhle kakhulu - misa isikhashana "
                       "uqinisekise ngesiteshi esisemthethweni kuqala."),
         },
         "digest": ("Ufuna umlayezo wamahhala we-WhatsApp wamasonto onke obonisa ukukhwabanisa "
-                   "kwakamuva nokuthi ungakubona kanjani?\n\n1 — Yebo\n2 — Cha ngiyabonga"),
+                   "kwakamuva nokuthi ungakubona kanjani?\n\n1 - Yebo\n2 - Cha ngiyabonga"),
         "done_yes": ("Kwenziwe! Hlala uphephile. 💛 (Phendula u-STOP noma nini ukuze "
                      "uzikhiphe.)"),
         "done_no": "Akunankinga. Hlala uphephile. 💛 Inombolo yakho ayigcinwanga.",
@@ -176,27 +182,27 @@ T = {
 
     "st": {
         "screen": ("Na see se ne se kenyeletsa lentswe, setshwantsho, video, kapa melaetsa "
-                   "ya bohata e neng e sa bonahale e le ya batho?\n\n1 — E\n2 — Tjhe / Ha ke na "
+                   "ya bohata e neng e sa bonahale e le ya batho?\n\n1 - E\n2 - Tjhe / Ha ke na "
                    "bonnete"),
         "not_ai": ("Ke a leboha. Veza e shebane le bosholu bo amanang le AI (jwalo ka di-"
                    "deepfake kapa di-voice clone), kahoo sena se ka ba kantle ho seo re se "
-                   "bokellang — empa o ntse o ka fumana thuso.\n\nHo tlaleha bosholu bofe kapa "
+                   "bokellang - empa o ntse o ka fumana thuso.\n\nHo tlaleha bosholu bofe kapa "
                    "bofe, letsetsa mohala wa mahala wa Yima: *083 123 7226*.\n\nLula o "
                    "bolokehile. 💛"),
         "q1": ("E ne e le bosholu ba mofuta ofe? Araba ka nomoro:\n"
-               "1 — Boiketsiso (motho o iketselitse eka ke motho kapa k'hamphani)\n"
-               "2 — Deepfake (video kapa foto ya bohata ya motho wa nnete)\n"
-               "3 — Tlhahiso ya matsete a bohata kapa ya \"ho ruang\"\n"
-               "4 — Tlhahiso ya mosebetsi ya bohata\n5 — Tlhahisoleseling ya bohata / litaba "
-               "tsa bohata\n6 — Ntho e nngwe"),
-        "q2": ("E etsahetse hokae? Araba ka nomoro:\n1 — WhatsApp\n2 — Mohala\n3 — Facebook\n"
-               "4 — Imeile kapa SMS\n5 — Sebakeng se seng"),
-        "q3": ("E amme eng? Araba ka nomoro:\n1 — Ke lahlehetswe ke chelete\n"
-               "2 — Ke fane ka tlhahisoleseling ya botho\n3 — E nkutloisitse bohloko empa ha "
-               "kea lahleheloa ke letho\n4 — Ha ho letho le etsahetseng, ke e tshwere ka nako"),
-        "q4": ("Na o tlalehile sena kae kapa kae?\n1 — E\n2 — Tjhe, ke ile ka ikutloa ke "
-               "hlajoa ke lihlong\n3 — Tjhe, ke ne ke sa tsebe moo nka tlalehang teng\n"
-               "4 — Tjhe, ke ne ke sa nahane hore e tla thusa"),
+               "1 - Boiketsiso (motho o iketselitse eka ke motho kapa k'hamphani)\n"
+               "2 - Deepfake (video kapa foto ya bohata ya motho wa nnete)\n"
+               "3 - Tlhahiso ya matsete a bohata kapa ya \"ho ruang\"\n"
+               "4 - Tlhahiso ya mosebetsi ya bohata\n5 - Tlhahisoleseling ya bohata / litaba "
+               "tsa bohata\n6 - Ntho e nngwe"),
+        "q2": ("E etsahetse hokae? Araba ka nomoro:\n1 - WhatsApp\n2 - Mohala\n3 - Facebook\n"
+               "4 - Imeile kapa SMS\n5 - Sebakeng se seng"),
+        "q3": ("E amme eng? Araba ka nomoro:\n1 - Ke lahlehetswe ke chelete\n"
+               "2 - Ke fane ka tlhahisoleseling ya botho\n3 - E nkutloisitse bohloko empa ha "
+               "kea lahleheloa ke letho\n4 - Ha ho letho le etsahetseng, ke e tshwere ka nako"),
+        "q4": ("Na o tlalehile sena kae kapa kae?\n1 - E\n2 - Tjhe, ke ile ka ikutloa ke "
+               "hlajoa ke lihlong\n3 - Tjhe, ke ne ke sa tsebe moo nka tlalehang teng\n"
+               "4 - Tjhe, ke ne ke sa nahane hore e tla thusa"),
         "q5": ("Mohato wa ho qetela (ha ho hlokahale). O ka romela setshwantsho sa skrine "
                "kapa molaetsa wa lentswe, KAPA o thaepa se etsahetseng ka mantswe a hao, KAPA "
                "o arabe SKIP ho qeta. Ntho efe kapa efe eo o e arolelanang e thusa ho lemosa "
@@ -228,11 +234,11 @@ T = {
                           "hlahisoang ke AI li ata kapele. Pele o fetisetsa ntho e tshosang, "
                           "hlahloba hore na mohloli o tshepahalang o tlaleha ntho e tshwanang."),
             "other": ("*E bone nakong e tlang:* Haeba molaetsa o baka potlako, o kopa chelete "
-                      "kapa dintlha, kapa o bonahala o le motle haholo — ema hanyane o netefatse "
+                      "kapa dintlha, kapa o bonahala o le motle haholo - ema hanyane o netefatse "
                       "ka kanale ya semmuso pele."),
         },
         "digest": ("Na o batla molaetsa wa mahala wa WhatsApp wa beke le beke o bontshang "
-                   "bosholu ba moraorao le hore na o ka bo bona jwang?\n\n1 — E\n2 — Tjhe ke a "
+                   "bosholu ba moraorao le hore na o ka bo bona jwang?\n\n1 - E\n2 - Tjhe ke a "
                    "leboha"),
         "done_yes": ("E se e entswe! Lula o bolokehile. 💛 (Araba STOP neng kapa neng ho "
                      "itlhakola.)"),
@@ -302,7 +308,7 @@ def whatsapp():
     elif step == "q5":
         if num_media > 0:
             s["has_evidence"] = "yes"
-            s["free_text_summary"] = "[media submitted — pending human review]"
+            s["free_text_summary"] = "[media submitted - pending human review]"
         elif body.upper() == "SKIP":
             s["free_text_summary"] = ""
         else:
