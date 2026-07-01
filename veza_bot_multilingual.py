@@ -6,17 +6,6 @@ responds in that language.
 
 PRIVACY: the sender's phone number is NEVER stored. Each report gets a random
 report_id; the number is only hashed in-memory to hold the conversation.
-
-Translations: machine-drafted (Google Translate), pending native-speaker review
-before production. English is the source of truth.
-
-Run locally:
-    pip install flask twilio
-    python veza_bot_multilingual.py
-    # second terminal: ngrok http 5000
-    # paste the ngrok https URL + "/whatsapp" into Twilio Sandbox settings
-
-Deploy (Render): start command  ->  gunicorn veza_bot_multilingual:app
 """
 
 import os
@@ -58,8 +47,7 @@ def save_report(s):
 
 
 # =====================  MESSAGE SETS  ========================================
-# T[lang][key]. lang in {en, zu, st}. Welcome is always shown first (trilingual
-# is impractical inline, so the welcome itself is English + language menu).
+# T[lang][key]. lang in {en, zu, st}
 
 WELCOME = (
     "👋 You're not alone, and this is not your fault. / Awuwedwa / Ha o mong.\n\n"
