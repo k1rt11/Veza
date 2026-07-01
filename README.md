@@ -15,7 +15,7 @@ Built for the Africa AI Safety Prize Competition 2026 (Track I: Community-Level 
 
 The screenshot below shows the Veza service deployed and running live on Render.
 
-![Veza deployment](Image_2026-07-01_at_14_08.jpeg)
+![Veza deployment](Image%202026-07-01%20at%2014.08.jpeg)
 
 ---
 
