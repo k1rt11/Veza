@@ -6,6 +6,17 @@ Built for the Africa AI Safety Prize Competition 2026 (Track I: Community-Level 
 
 **Current state:** Working prototype, piloted and tested. Delivered over WhatsApp using Twilio's WhatsApp sandbox. A production deployment would use a dedicated WhatsApp number.
 
+## Demo — see the bot working
+
+**Watch the demo video:** https://drive.google.com/file/d/1qeLoaT8ClbDBWGd567n5wmSsJzfkhuB6/view?usp=sharing
+
+**Or try it live:** on WhatsApp, send `join column-event` to `+1 415 523 8886`, then message the bot and follow the prompts. It works in English, isiZulu, and Sesotho.
+(The pilot runs on Twilio's WhatsApp sandbox, so the number shown is the Twilio sandbox number, not a branded Veza number.)
+
+The screenshot below shows the Veza service deployed and running live on Render.
+
+![Veza deployment](Image_2026-07-01_at_14_08.jpeg)
+
 ---
 
 ## What it does
