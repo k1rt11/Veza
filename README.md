@@ -23,7 +23,7 @@ Built for the Africa AI Safety Prize Competition 2026 (Track I: Community-Level 
 
 ## Why this matters
 
-We cannot make AI safe if ywe cannot see how it harms people. In South Africa, about 80% of scams go unreported, and existing tools are English-only and website or hotline based. Veza captures AI-harm reports from people who are usually left out, in their own languages, and turns them into a structured record.
+We cannot make AI safe if we cannot see how it harms people. In South Africa, about 80% of scams go unreported, and existing tools are English-only and website or hotline based. Veza captures AI-harm reports from people who are usually left out, in their own languages, and turns them into a structured record.
 
 ---
 
